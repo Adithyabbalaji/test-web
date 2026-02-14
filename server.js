@@ -11,7 +11,7 @@ const diaryEntries = [
   {
     id: 1,
     text: 'Moonlight and roses made this evening unforgettable.',
-    photo: '/assets/first-page.jpg'
+    photo: 'https://images.unsplash.com/photo-1518895949257-7621c3c786d7?auto=format&fit=crop&w=900&q=80'
   },
   {
     id: 2,
