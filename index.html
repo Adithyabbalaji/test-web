@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Romantic Photo Diary</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js" defer></script>
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <main id="app" class="app-shell" v-cloak>
+      <h1>Our Love Diary</h1>
+      <p class="subtitle">Photos are loaded from the backend memories API. Tap the right edge to turn the page.</p>
+
+      <section class="book" aria-label="Romantic photo diary" :class="bookTurnClass">
+        <article class="page left" v-if="leftPage">
+          <div class="photo-frame">
+            <img :src="leftPage.photo" alt="Romantic memory photo" class="memory-photo" />
+          </div>
+        </article>
+
+        <button
+          type="button"
+          class="edge-button left-edge"
+          :disabled="!canGoBack"
+          @click="turnBackward"
+          aria-label="Turn to previous pages"
+          title="Previous pages"
+        ></button>
+
+        <article class="page right" v-if="rightPage">
+          <div class="photo-frame">
+            <img :src="rightPage.photo" alt="Romantic memory photo" class="memory-photo" />
+          </div>
+        </article>
+
+        <button
+          type="button"
+          class="edge-button right-edge"
+          :disabled="!canGoForward"
+          @click="turnForward"
+          aria-label="Turn to next pages"
+          title="Next pages"
+        ></button>
+      </section>
+
+      <p class="progress">{{ progressLabel }}</p>
+      <p class="loading" v-if="loading">Loading memories…</p>
+      <p class="error" v-if="errorMessage">{{ errorMessage }}</p>
+    </main>
+  </body>
+</html>
